@@ -1,6 +1,8 @@
 import { createRoot } from 'react-dom/client';
-import Count from './components/Count';
+import App from './components/App';
+
+import './index.scss'
 
 const domNode = document.getElementById('root');
 const root = createRoot(domNode);
-root.render(<Count />);
+root.render(<App/>);

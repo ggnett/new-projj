@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import './Count.scss';
+import style from './Count.module.scss';
 
 export default function Count() {
     const [count, setCount] = useState(0);
@@ -10,7 +10,7 @@ export default function Count() {
     };
 
     return (
-        <div className="main">
+        <div className={style.main}>
             <h1> {count}</h1>
             <button onClick={click}>inc</button>
         </div>
