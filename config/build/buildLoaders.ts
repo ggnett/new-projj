@@ -4,8 +4,6 @@ import { buildOptions } from './types/config'
 
 export function buildLoaders (option:buildOptions):webpack.RuleSetRule[] {
 
-// 4 11
-
     const cssLoader = {
         test: /\.s[ac]ss$/i,
         use: [
