@@ -17,7 +17,7 @@ export function buildWebpackConfig (options:buildOptions):webpack.Configuration 
         module: {
           rules: buildLoaders(options)
         },
-        resolve: buildResolve(),
+        resolve: buildResolve(options),
         plugins: buildPlugins(options),
         output: {
           filename: 'bundle.js',

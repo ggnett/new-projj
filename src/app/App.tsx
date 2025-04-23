@@ -1,20 +1,18 @@
 import { Link, Route, Routes } from 'react-router-dom';
-import AboutPageL from './pages/AboutPage/AboutPage.lazy';
-import MainPageL from './pages/MainPage/MainPage.lazy';
 import React from 'react';
-import Loader1 from './Loader1';
 import cn from 'classnames';
-import { Theme } from '../theme/ThemeContext';
-import { useTheme } from '../theme/useTheme';
+import { Theme } from './providers/theme/ThemeContext';
+import { useTheme } from './providers/theme/useTheme';
+import MainPageL from '../pages/MainPage/MainPage.lazy';
+import AboutPageL from 'pages/AboutPage/AboutPage.lazy';
+import { Loader } from 'shared/Loader';
 
-import styles from '../styles/index.scss';
+import styles from './styles/index.scss';
 
 export default function App() {
+    const { theme, toogleTheme } = useTheme();
 
-    const {theme, toogleTheme} = useTheme()
-
-
-// dlia raboti stilei v classnames
+    // dlia raboti stilei v classnames
     const curentTheme = theme === Theme.DARK ? styles.dark : styles.normal;
 
     return (
@@ -22,7 +20,7 @@ export default function App() {
             <button onClick={toogleTheme}>theme</button>
             <Link to="/">MAIN</Link>
             <Link to="/about">ABOUT</Link>
-            <React.Suspense fallback={<Loader1 />}>
+            <React.Suspense fallback={<Loader />}>
                 <Routes>
                     <Route path="/" element={<MainPageL />} />
                     <Route path="/about" element={<AboutPageL />} />

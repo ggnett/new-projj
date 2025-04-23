@@ -9,6 +9,7 @@ export interface buildPaths {
     entry: string;
     build:string;
     html:string;
+    src:string;
 }
 
 export interface buildOptions {
