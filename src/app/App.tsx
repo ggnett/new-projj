@@ -8,7 +8,7 @@ import { NavBar } from 'widgets/NavBar';
 import styles from './styles/index.scss';
 
 export default function App() {
-    const { theme, toogleTheme } = useTheme();
+    const { theme} = useTheme();
 
     // dlia raboti stilei v classnames
     const curentTheme = theme === Theme.DARK ? styles.dark : styles.normal;
@@ -17,7 +17,6 @@ export default function App() {
         <div className={cn(styles.app, curentTheme)}>
             <NavBar />
             <AppRouter />
-            <button onClick={toogleTheme}>theme</button>
         </div>
     );
 }
