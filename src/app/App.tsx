@@ -7,6 +7,7 @@ import { NavBar } from 'widgets/NavBar';
 import { SideBar } from 'widgets/SideBar';
 
 import styles from './styles/index.scss';
+import { Suspense } from 'react';
 
 export default function App() {
     const { theme } = useTheme();
@@ -16,11 +17,13 @@ export default function App() {
 
     return (
         <div className={cn(styles.app, curentTheme)}>
-            <NavBar />
-            <div className={styles.content}>
-                <SideBar />
-                <AppRouter />
-            </div>
+            <Suspense fallback="">
+                <NavBar />
+                <div className={styles.content}>
+                    <SideBar />
+                    <AppRouter />
+                </div>
+            </Suspense>
         </div>
     );
 }

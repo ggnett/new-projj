@@ -3,6 +3,7 @@ import cn from 'classnames';
 import { ThemeSwitcher } from 'widgets/ThemeSwitcher';
 
 import styles from './SideBar.module.scss';
+import LangSwitcher from 'widgets/LangSwitcher/ui/LangSwitcher';
 
 export default function SideBar() {
     const [collapsed, setCollapsed] = useState(false);
@@ -16,6 +17,7 @@ export default function SideBar() {
             <button onClick={toogle}>toogle</button>
             <div className={cn(styles.switchers)}>
                 <ThemeSwitcher />
+                <LangSwitcher />
             </div>
         </div>
     );
