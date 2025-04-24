@@ -3,6 +3,7 @@ import cn from 'classnames';
 import { Theme } from './providers/theme/ThemeContext';
 import { useTheme } from './providers/theme/useTheme';
 import { AppRouter } from 'app/providers/router';
+import { NavBar } from 'widgets/NavBar';
 
 import styles from './styles/index.scss';
 
@@ -14,10 +15,9 @@ export default function App() {
 
     return (
         <div className={cn(styles.app, curentTheme)}>
-            <button onClick={toogleTheme}>theme</button>
-            <Link to="/">MAIN</Link>
-            <Link to="/about">ABOUT</Link>
+            <NavBar />
             <AppRouter />
+            <button onClick={toogleTheme}>theme</button>
         </div>
     );
 }
