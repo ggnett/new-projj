@@ -4,11 +4,12 @@ import { Theme } from './providers/theme/ThemeContext';
 import { useTheme } from './providers/theme/useTheme';
 import { AppRouter } from 'app/providers/router';
 import { NavBar } from 'widgets/NavBar';
+import { SideBar } from 'widgets/SideBar';
 
 import styles from './styles/index.scss';
 
 export default function App() {
-    const { theme} = useTheme();
+    const { theme } = useTheme();
 
     // dlia raboti stilei v classnames
     const curentTheme = theme === Theme.DARK ? styles.dark : styles.normal;
@@ -16,7 +17,10 @@ export default function App() {
     return (
         <div className={cn(styles.app, curentTheme)}>
             <NavBar />
-            <AppRouter />
+            <div className={styles.content}>
+                <SideBar />
+                <AppRouter />
+            </div>
         </div>
     );
 }
