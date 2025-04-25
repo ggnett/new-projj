@@ -1,4 +1,3 @@
-/* stylelint-disable-next-line selector-class-pattern */
 .navBar {
     width: 100%;
     height: var(--navbar-height);
@@ -9,7 +8,7 @@
 }
 
 .links {
-    margin-left:auto;
+    margin-left: auto;
     display: flex;
     gap: 20px;
 }

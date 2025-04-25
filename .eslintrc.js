@@ -3,8 +3,8 @@ module.exports = {
         browser: true,
         es2021: true,
     },
-    extends: ['airbnb', 'plugin:storybook/recommended'],
-    plugins: ['react', 'react-hooks', 'react-hooks'],
+    extends: ['airbnb', 'plugin:storybook/recommended', 'plugin:i18next/recommended'],
+    plugins: ['react', 'react-hooks', 'react-hooks', 'i18next'],
     overrides: [
         {
             env: {
@@ -55,5 +55,6 @@ module.exports = {
         'default-case': 'off',
         'react/no-unknown-property': 'off',
         'react-hooks/exhaustive-deps': 'error',
+        'i18next/no-literal-string': ['error', { markupOnly: true }],
     },
 };
