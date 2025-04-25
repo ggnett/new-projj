@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
 import cn from 'classnames';
-import { Theme } from './providers/theme/ThemeContext';
-import { useTheme } from './providers/theme/useTheme';
 import { AppRouter } from 'app/providers/router';
 import { NavBar } from 'widgets/NavBar';
 import { SideBar } from 'widgets/SideBar';
 
-import styles from './styles/index.scss';
 import { Suspense } from 'react';
+import styles from './styles/index.scss';
+import { useTheme } from './providers/theme/useTheme';
+import { Theme } from './providers/theme/ThemeContext';
 
 export default function App() {
     const { theme } = useTheme();

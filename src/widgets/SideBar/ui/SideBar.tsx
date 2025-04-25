@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import cn from 'classnames';
 import { ThemeSwitcher } from 'widgets/ThemeSwitcher';
+import LangSwitcher from 'widgets/LangSwitcher/ui/LangSwitcher';
 
 import styles from './SideBar.module.scss';
-import LangSwitcher from 'widgets/LangSwitcher/ui/LangSwitcher';
 
 export default function SideBar() {
     const [collapsed, setCollapsed] = useState(false);
@@ -14,7 +14,9 @@ export default function SideBar() {
 
     return (
         <div className={cn(styles.sidebar, { [styles.collapsed]: collapsed })}>
-            <button onClick={toogle}>toogle</button>
+            <button type="button" onClick={toogle}>
+                toggle
+            </button>
             <div className={cn(styles.switchers)}>
                 <ThemeSwitcher />
                 <LangSwitcher />
