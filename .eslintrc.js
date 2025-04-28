@@ -2,6 +2,7 @@ module.exports = {
     env: {
         browser: true,
         es2021: true,
+        jest: true,
     },
     extends: ['airbnb', 'plugin:storybook/recommended', 'plugin:i18next/recommended'],
     plugins: ['react', 'react-hooks', 'react-hooks', 'i18next'],
