@@ -2,8 +2,6 @@ import { fireEvent, screen } from '@testing-library/react';
 import renderWithTranslation from 'shared/lib/tests/renderWithTranslation';
 import SideBar from './SideBar';
 
-// DODELAT" 21-04
-
 describe('TemeSwitcher', () => {
     test('render', () => {
         renderWithTranslation(<SideBar />);
