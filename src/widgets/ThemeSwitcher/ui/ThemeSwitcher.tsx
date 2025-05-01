@@ -8,7 +8,7 @@ export default function ThemeSwitcher() {
     const { theme, toogleTheme } = useTheme();
 
     return (
-        <button type="button" className={styles.but} onClick={toogleTheme}>
+        <button data-testid="ThemeSwitcher" type="button" className={styles.but} onClick={toogleTheme}>
             {theme === Theme.DARK ? <Moon /> : <Sun />}
         </button>
     );

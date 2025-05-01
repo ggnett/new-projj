@@ -4,6 +4,7 @@
  */
 
 import type { Config } from 'jest';
+import path from 'path';
 
 const config: Config = {
 
@@ -28,10 +29,24 @@ const config: Config = {
     rootDir: '../../',
     testEnvironment: 'jsdom',
     testMatch: [
-        '**/__tests__/**/*.[jt]s?(x)',
-        '**/?(*.)+(spec|test).[tj]s?(x)',
+        '<rootDir>src/**/*(*.)@(spec|test).[tj]s?(x)',
     ],
     preset: 'ts-jest',
+    setupFilesAfterEnv: ['<rootDir>config/jest/jestSetup.ts'],
+
+    modulePaths: [
+        '<rootDir>src',
+    ],
+
+    moduleNameMapper: {
+        '\\.(s?css)$': 'identity-obj-proxy',
+        /**
+       * поскольку иконки благодаря плагину импортируются как готовые компоненты, делаем подобный маппер
+       * своеобразный мок, который будет использоваться для всех импортов .svg
+       */
+        '\\.svg': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
+        '^@/(.*)$': '<rootDir>src/$1',
+    },
 
     // All imported modules in your tests should be mocked automatically
     // automock: false,

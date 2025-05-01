@@ -1,3 +1,4 @@
+/* eslint-disable i18next/no-literal-string */
 import { useState } from 'react';
 import cn from 'classnames';
 import { ThemeSwitcher } from 'widgets/ThemeSwitcher';
@@ -13,8 +14,8 @@ export default function SideBar() {
     };
 
     return (
-        <div className={cn(styles.sidebar, { [styles.collapsed]: collapsed })}>
-            <button type="button" onClick={toogle}>
+        <div data-testid="sidebar" className={cn(styles.sidebar, { [styles.collapsed]: collapsed })}>
+            <button data-testid="toggleButton" type="button" onClick={toogle}>
                 toggle
             </button>
             <div className={cn(styles.switchers)}>

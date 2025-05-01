@@ -10,5 +10,15 @@
         "esModuleInterop": true,
         "allowSyntheticDefaultImports": true,
         "baseUrl": "src"
-    }
+    },
+    "ts-node": {
+        "compilerOptions": {
+            "module": "CommonJS"
+        }
+    },
+    "include": [
+        "./config/jest/jestSetup.ts",
+        // Работа абсолюных импортов в тестах
+        "./src/**/*"
+    ]
 }
