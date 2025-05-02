@@ -62,6 +62,12 @@ module.exports = {
         'default-case': 'off',
         'react/no-unknown-property': 'off',
         'react-hooks/exhaustive-deps': 'error',
-        'i18next/no-literal-string': ['error', { markupOnly: true }],
+        'i18next/no-literal-string': [
+            'error',
+            {
+                markupOnly: true,
+                ignoreAttribute: ['data-testid', 'to'],
+            },
+        ],
     },
 };
