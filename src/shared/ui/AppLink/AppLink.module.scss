@@ -1,11 +1,16 @@
 .links {
     color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .primary {
     color: var(--inverted-primary-color);
+    fill: var(--inverted-primary-color);
 }
 
 .secondary {
     color: var(--inverted-secondary-color);
+    fill: var(--inverted-secondary-color);
 }
