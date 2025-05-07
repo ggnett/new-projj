@@ -5,4 +5,14 @@
     display: flex;
     align-items: center;
     padding: 20px;
+    justify-content: flex-end;
+}
+
+.entButton {
+    padding:5px;
+    color:var(--inverted-primary-color);
+    background: var(--inverted-bg-color);
+    cursor:pointer;
+    font:var(--font-size-l);
+    line-height: var(--font-line-l);
 }

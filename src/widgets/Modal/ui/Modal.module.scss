@@ -1,0 +1,42 @@
+@use '../../../app//styles/index.scss';
+
+.modal {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    transition: all linear 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.overlay {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba($color: #050404, $alpha: 60%);
+    transition: all linear 0.2s;
+}
+
+.content {
+    padding: 20px;
+    border-radius: 10px;
+    background-color: var(--inverted-bg-color);
+    color:var(--inverted-primary-color);
+    max-width: 60%;
+    overflow: hidden;
+    max-height: 60%;
+}
+
+.hideModal {
+    z-index: -1;
+}
+
+.hideOverlay {
+    width: 0;
+    height: 0;
+}

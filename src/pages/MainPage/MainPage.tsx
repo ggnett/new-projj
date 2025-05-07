@@ -8,7 +8,8 @@ export default function MainPage() {
 
     return (
         <div className={styles.root}>
-            <BugButton />
+            {/* dlia testov */}
+            {/* <BugButton /> */}
             {t('Главная страница')}
         </div>
     );

@@ -33,7 +33,6 @@
 
     .link {
         width: 1px;
-        height: 1px;
         opacity: 0;
     }
 }
@@ -53,9 +52,9 @@
 }
 
 .links {
-    margin-left: auto;
     display: flex;
     flex-flow: column nowrap;
+    align-items: flex-start;
     gap: 20px;
     padding-left: 15px;
 }

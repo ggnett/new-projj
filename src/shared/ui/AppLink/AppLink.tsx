@@ -15,10 +15,9 @@ interface props extends LinkProps {
 
 const AppLink: FC<props> = (props) => {
     const { children, to, theme } = props;
-    const themeStyle = theme === themes.PRIMARY ? styles.primary : styles.secondary;
 
     return (
-        <Link className={cn(styles.links, themeStyle)} to={to}>
+        <Link className={cn(styles.links, styles[theme])} to={to}>
             {children}
         </Link>
     );

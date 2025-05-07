@@ -1,3 +1,4 @@
+/* eslint-disable dot-notation */
 /* eslint-disable i18next/no-literal-string */
 import { useState } from 'react';
 import cn from 'classnames';
@@ -20,7 +21,7 @@ export default function SideBar() {
     };
 
     return (
-        <div data-testid="sidebar" className={cn(styles.sidebar, { [styles.collapsed]: collapsed })}>
+        <div data-testid="sidebar" className={cn(styles['sidebar'], { [styles.collapsed]: collapsed })}>
             <div className={styles.links}>
                 <AppLink to="/" theme={themes.SECONDARY}>
                     <Main />

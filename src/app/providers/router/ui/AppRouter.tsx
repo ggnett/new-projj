@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { Loader } from 'shared/Loader';
+import { Loader } from 'shared/ui/Loader';
 import { routeConfig } from '../routerConfig/routerConfig';
 
 import styles from '../../../styles/index.scss';
