@@ -6,9 +6,16 @@
 
 .input {
     margin-top: 10px;
+    background-color: red;
 }
 
 .loginBtn {
     margin-top: 10px;
     margin-left: auto;
+    padding: 5px;
+    border: none;
+    background-color: var(--inverted-bg-color);
+    color: var(--inverted-secondary-color);
+    font-size: var(--font-size-m);
+    cursor: pointer;
 }

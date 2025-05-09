@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Modal } from 'widgets/Modal';
 import LoginFrom from '../LoginForm/LoginForm';
 
@@ -12,7 +12,7 @@ export default function LoginModal(props: props) {
 
     return (
         <Modal isOpen={isOpen} setOpen={setOpen}>
-            <LoginFrom />
+            <LoginFrom isOpen={isOpen} />
         </Modal>
     );
 }
