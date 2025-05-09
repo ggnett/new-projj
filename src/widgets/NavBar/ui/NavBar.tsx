@@ -5,6 +5,7 @@ import AppLink, { themes } from 'shared/ui/AppLink/AppLink';
 import { useCallback, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { Modal } from 'widgets/Modal';
+import { LoginModal } from 'features/AuthByUsername';
 import styles from './NavBar.module.scss';
 
 export default function NavBar() {
@@ -21,13 +22,7 @@ export default function NavBar() {
             <button className={styles.entButton} onClick={visibleHundler} type="button">
                 {t('войти')}
             </button>
-            {createPortal(
-                <Modal isOpen={modalOpen} setOpen={visibleHundler}>
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia autem nulla et vel veniam est fugit ducimus, possimus quisquam
-                    neque necessitatibus atque, quas magni quis laudantium pariatur nemo explicabo eum.
-                </Modal>,
-                document.body
-            )}
+            {createPortal(<LoginModal isOpen={modalOpen} setOpen={visibleHundler} />, document.body)}
         </div>
     );
 }

@@ -1,4 +1,4 @@
-@use '../../../app//styles/index.scss';
+@use '../../../app/styles/index';
 
 .modal {
     position: absolute;
@@ -25,8 +25,8 @@
 .content {
     padding: 20px;
     border-radius: 10px;
-    background-color: var(--inverted-bg-color);
-    color:var(--inverted-primary-color);
+    background-color: var(--bg-color);
+    color: var(--primary-color);
     max-width: 60%;
     overflow: hidden;
     max-height: 60%;

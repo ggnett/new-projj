@@ -1,0 +1,31 @@
+.inputWrapper {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.placeholder {
+    margin-right: 5px;
+    flex: 0 1 auto;
+}
+
+.input {
+    background: transparent;
+    border: 1px solid var(--primary-color);
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    outline: none;
+    flex: 1;
+    color: var(--primary-color);
+    padding: 0 0 0 5px;
+    text-shadow:1px red;
+}
+
+.input[readonly] {
+    border-color: transparent;
+}
+
+.readonly {
+    opacity: 0.7;
+}
