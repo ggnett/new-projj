@@ -17,7 +17,7 @@ export default function Modal(props: props) {
     const { theme } = useTheme();
 
     return (
-        <div className={cn(styles[theme], styles.modal, !isOpen && styles.hideModal, styles.theme)}>
+        <div className={cn(styles[themes], styles.modal, !isOpen && styles.hideModal, styles.theme)}>
             <div className={cn(styles.overlay, !isOpen && styles.hideOverlay)} onClick={setOpen}>
                 <div className={styles.content} onClick={(e: React.MouseEvent) => e.stopPropagation()}>
                     {children}

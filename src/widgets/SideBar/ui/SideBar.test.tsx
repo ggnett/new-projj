@@ -2,7 +2,7 @@ import { fireEvent, screen } from '@testing-library/react';
 import renderWithTranslation from 'shared/lib/tests/renderWithTranslation';
 import SideBar from './SideBar';
 
-describe('TemeSwitcher', () => {
+describe('Sidebar', () => {
     test('render', () => {
         renderWithTranslation(<SideBar />);
         expect(screen.getByTestId('sidebar')).toBeInTheDocument();

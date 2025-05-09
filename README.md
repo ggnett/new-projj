@@ -1,6 +1,7 @@
     "build:prod" - Сборка в prod режиме
     "build:dev" - Сборка в dev режиме (не минимизирован)
     "start" - Запуск frontend проекта на webpack dev server
+    "start:dev:server" - Запуск имитации бекенд сервера
     "lint:ts" - Проверка ts файлов линтером
     "lint:ts:fix" - Исправление ts файлов линтером
     "lint:scss" - Проверка scss файлов style линтером
