@@ -6,16 +6,37 @@ import { useCallback, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { Modal } from 'widgets/Modal';
 import { LoginModal } from 'features/AuthByUsername';
+import { getUserAuthData, userActions } from 'entities/User';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './NavBar.module.scss';
 
 export default function NavBar() {
     const [modalOpen, setModalOpen] = useState(false);
+
+    const dispatch = useDispatch();
+
+    const authData = useSelector(getUserAuthData);
 
     const { t } = useTranslation();
 
     const visibleHundler = useCallback(() => {
         setModalOpen((prev) => !prev);
     }, []);
+
+    const onLogout = useCallback(() => {
+        dispatch(userActions.logout());
+    }, [dispatch]);
+
+    if (authData) {
+        return (
+            <div className={styles.navBar}>
+                <button className={styles.entButton} onClick={onLogout} type="button">
+                    {t('выйти')}
+                </button>
+                {createPortal(<LoginModal isOpen={modalOpen} setOpen={visibleHundler} />, document.body)}
+            </div>
+        );
+    }
 
     return (
         <div className={styles.navBar}>

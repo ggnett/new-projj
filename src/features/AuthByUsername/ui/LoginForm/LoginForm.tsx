@@ -1,33 +1,63 @@
-import React, { useRef, useState } from 'react';
+/* eslint-disable i18next/no-literal-string */
+/* eslint-disable object-curly-newline */
+/* eslint-disable comma-dangle */
+import React, { memo, useCallback, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Input } from 'shared/ui/Input';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { loginActions } from 'features/AuthByUsername/model/slice/LoginSlice';
+import { getLoginState } from 'features/AuthByUsername/model/selectors/getLoginState';
+import cn from 'classnames';
+import { Text } from 'shared/ui/Text';
+import { TextTheme } from 'shared/ui/Text/ui/Text';
 import styles from './LoginForm.module.scss';
-// popravit' focus i td
+import { loginByUsername } from '../../model/services/loginByUserName/loginByUserName';
 
-export default function LoginFrom(props: { isOpen: boolean }) {
-    const { isOpen } = props;
+const LoginFrom = memo((props: { isOpen: boolean; setOpen?: () => void }) => {
+    const { isOpen, setOpen } = props;
 
     const { t } = useTranslation();
 
-    const [inpLogin, setInpLogin] = useState('');
-    const [inpPassword, setInpPassword] = useState('');
+    const dispatch = useDispatch<any>();
+    const { username, password, error, isLoading } = useSelector(getLoginState);
 
-    const onChangeLogin = (value: string) => {
-        setInpLogin(value);
-    };
+    const onChangeLogin = useCallback(
+        (value: string) => {
+            dispatch(loginActions.setUserName(value));
+        },
+        [dispatch]
+    );
 
-    const onChangePassword = (value: string) => {
-        setInpPassword(value);
-    };
+    const onChangePassword = useCallback(
+        (value: string) => {
+            dispatch(loginActions.setPassword(value));
+        },
+        [dispatch]
+    );
+
+    const onLoginClick = useCallback(async () => {
+        const result = await dispatch(loginByUsername({ username, password }));
+        if (result.meta.requestStatus === 'fulfilled') {
+            setOpen();
+        }
+    }, [dispatch, password, setOpen, username]);
 
     return (
         <div className={styles.loginForm}>
-            <Input autofocus={isOpen} onChange={onChangeLogin} value={inpLogin} placeholder={t('Enter login')} />
-            <Input onChange={onChangePassword} value={inpPassword} placeholder={t('Enter password')} />
-            <button className={styles.loginBtn} type="button">
+            <Text title={t('форма авторизации')} />
+            {error && (
+                <div>
+                    <Text text={t('Не корректный логин или пароль')} theme={TextTheme.ERROR} />
+                </div>
+            )}
+            <Input autofocus={isOpen} onChange={onChangeLogin} value={username} placeholder={t('Enter login')} />
+            <Input onChange={onChangePassword} value={password} placeholder={t('Enter password')} />
+            <button onClick={onLoginClick} className={cn(styles.loginBtn, { [styles.disabled]: isLoading })} type="button">
                 {t('войти')}
             </button>
         </div>
     );
-}
+});
+
+export default LoginFrom;

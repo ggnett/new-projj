@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Link, LinkProps } from 'react-router-dom';
+import { Link, LinkProps, NavLink } from 'react-router-dom';
 import cn from 'classnames';
 import styles from './AppLink.module.scss';
 
@@ -17,9 +17,13 @@ const AppLink: FC<props> = (props) => {
     const { children, to, theme } = props;
 
     return (
-        <Link className={cn(styles.links, styles[theme])} to={to}>
+        <NavLink
+            className={cn(styles.links, styles[theme])}
+            to={to}
+            style={({ isActive }) => ({ color: isActive ? 'var(--inverted-secondary-color)' : '', fill: isActive ? 'var(--inverted-secondary-color)' : '' })}
+        >
             {children}
-        </Link>
+        </NavLink>
     );
 };
 

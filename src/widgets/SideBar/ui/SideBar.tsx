@@ -23,7 +23,7 @@ export default function SideBar() {
     return (
         <div data-testid="sidebar" className={cn(styles.sidebar, { [styles.collapsed]: collapsed })}>
             <div className={styles.links}>
-                <AppLink to="/" theme={themes.SECONDARY}>
+                <AppLink to="/" theme={themes.PRIMARY}>
                     <Main />
                     <span className={cn(styles.link)}>{t('Главная')}</span>
                 </AppLink>

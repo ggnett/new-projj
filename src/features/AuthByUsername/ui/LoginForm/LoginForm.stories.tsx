@@ -10,7 +10,9 @@ const meta = {
     component: LoginForm,
     tags: ['autodocs'],
     argTypes: {},
-    args: { isOpen: true },
+    args: {
+        isOpen: true,
+    },
 } satisfies Meta<typeof LoginForm>;
 
 export default meta;

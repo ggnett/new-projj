@@ -19,3 +19,7 @@
     font-size: var(--font-size-m);
     cursor: pointer;
 }
+
+.disabled {
+    opacity: 0.1;
+}

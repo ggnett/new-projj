@@ -12,7 +12,7 @@ export default function LoginModal(props: props) {
 
     return (
         <Modal isOpen={isOpen} setOpen={setOpen}>
-            <LoginFrom isOpen={isOpen} />
+            <LoginFrom isOpen={isOpen} setOpen={setOpen} />
         </Modal>
     );
 }
