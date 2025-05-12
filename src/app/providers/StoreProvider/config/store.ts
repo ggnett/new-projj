@@ -1,4 +1,4 @@
-import { configureStore, ReducersMapObject } from '@reduxjs/toolkit';
+import { configureStore, DeepPartial, ReducersMapObject } from '@reduxjs/toolkit';
 import { counterReducer } from 'entities/Counter/model/slice/counterSlice';
 import { userReducer } from 'entities/User';
 // import { loginReducer } from 'features/AuthByUsername';
@@ -7,6 +7,7 @@ import { createReducerManager } from './reducerManager';
 
 export default function createReduxStore(
     initialState?:StateSchema,
+    asyncReducers?:ReducersMapObject<StateSchema>,
 ) {
     const rootRedusers: ReducersMapObject<StateSchema> = {
         counter: counterReducer,

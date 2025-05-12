@@ -11,12 +11,17 @@ import cn from 'classnames';
 import { Text } from 'shared/ui/Text';
 import { TextTheme } from 'shared/ui/Text/ui/Text';
 import { ReduxStoreWithManager } from 'app/providers/StoreProvider';
+import DynamicModuleLoader, { ReducerList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { getLoginIsLoading } from '../../model/selectors/getLoginIsLoading';
 import { getLoginError } from '../../model/selectors/getLoginError';
 import { getLoginPassword } from '../../model/selectors/getLoginPassword';
 import { getLoginUsername } from '../../model/selectors/getLoginUsername';
 import { loginByUsername } from '../../model/services/loginByUserName/loginByUserName';
 import styles from './LoginForm.module.scss';
+
+const initialReducers: ReducerList = {
+    login: loginReducer,
+};
 
 const LoginFrom = memo((props: { isOpen: boolean; setOpen?: () => void }) => {
     const { isOpen, setOpen } = props;
@@ -28,17 +33,6 @@ const LoginFrom = memo((props: { isOpen: boolean; setOpen?: () => void }) => {
     const password = useSelector(getLoginPassword);
     const isLoading = useSelector(getLoginIsLoading);
     const error = useSelector(getLoginError);
-
-    const store = useStore() as ReduxStoreWithManager;
-
-    useEffect(() => {
-        store.reducerManager.add('login', loginReducer);
-
-        return () => {
-            store.reducerManager.remove('login');
-        };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
 
     const onChangeLogin = useCallback(
         (value: string) => {
@@ -62,19 +56,21 @@ const LoginFrom = memo((props: { isOpen: boolean; setOpen?: () => void }) => {
     }, [dispatch, password, setOpen, username]);
 
     return (
-        <div className={styles.loginForm}>
-            <Text title={t('форма авторизации')} />
-            {error && (
-                <div>
-                    <Text text={t('Не корректный логин или пароль')} theme={TextTheme.ERROR} />
-                </div>
-            )}
-            <Input autofocus={isOpen} onChange={onChangeLogin} value={username} placeholder={t('Enter login')} />
-            <Input onChange={onChangePassword} value={password} placeholder={t('Enter password')} />
-            <button onClick={onLoginClick} className={cn(styles.loginBtn, { [styles.disabled]: isLoading })} type="button">
-                {t('войти')}
-            </button>
-        </div>
+        <DynamicModuleLoader reducers={initialReducers} removeAfterUnmout>
+            <div className={styles.loginForm}>
+                <Text title={t('форма авторизации')} />
+                {error && (
+                    <div>
+                        <Text text={t('Не корректный логин или пароль')} theme={TextTheme.ERROR} />
+                    </div>
+                )}
+                <Input autofocus={isOpen} onChange={onChangeLogin} value={username} placeholder={t('Enter login')} />
+                <Input onChange={onChangePassword} value={password} placeholder={t('Enter password')} />
+                <button onClick={onLoginClick} className={cn(styles.loginBtn, { [styles.disabled]: isLoading })} type="button">
+                    {t('войти')}
+                </button>
+            </div>
+        </DynamicModuleLoader>
     );
 });
 
