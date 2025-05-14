@@ -8,12 +8,15 @@ import { Modal } from 'widgets/Modal';
 import { LoginModal } from 'features/AuthByUsername';
 import { getUserAuthData, userActions } from 'entities/User';
 import { useDispatch, useSelector } from 'react-redux';
+import { getProfileData } from 'entities/Profile/model/selectors/getProfileData/getProfileData';
+import { fetchProfileData } from 'entities/Profile';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import styles from './NavBar.module.scss';
 
 const NavBar = memo(() => {
     const [modalOpen, setModalOpen] = useState(false);
 
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     const authData = useSelector(getUserAuthData);
 
