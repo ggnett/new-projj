@@ -1,10 +1,11 @@
 import { useTheme } from 'app/providers/theme/useTheme';
 import { Theme } from 'app/providers/theme/ThemeContext';
+import { memo } from 'react';
 import Moon from '../../../../public/icons/moon 40x40.svg';
 import Sun from '../../../../public/icons/sun 40x40.svg';
 import styles from './ThemeSwitcher.module.scss';
 
-export default function ThemeSwitcher() {
+const ThemeSwitcher = memo(() => {
     const { theme, toogleTheme } = useTheme();
 
     return (
@@ -12,4 +13,6 @@ export default function ThemeSwitcher() {
             {theme === Theme.DARK ? <Moon /> : <Sun />}
         </button>
     );
-}
+});
+
+export default ThemeSwitcher;

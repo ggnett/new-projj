@@ -20,7 +20,7 @@ import { getLoginUsername } from '../../model/selectors/getLoginUsername';
 import { loginByUsername } from '../../model/services/loginByUserName/loginByUserName';
 import styles from './LoginForm.module.scss';
 
-//4 10
+// 4 10
 
 const initialReducers: ReducerList = {
     login: loginReducer,

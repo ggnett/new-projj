@@ -2,7 +2,7 @@
 /* eslint-disable i18next/no-literal-string */
 import { useTranslation } from 'react-i18next';
 import AppLink, { themes } from 'shared/ui/AppLink/AppLink';
-import { useCallback, useState } from 'react';
+import { memo, useCallback, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { Modal } from 'widgets/Modal';
 import { LoginModal } from 'features/AuthByUsername';
@@ -10,7 +10,7 @@ import { getUserAuthData, userActions } from 'entities/User';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './NavBar.module.scss';
 
-export default function NavBar() {
+const NavBar = memo(() => {
     const [modalOpen, setModalOpen] = useState(false);
 
     const dispatch = useDispatch();
@@ -46,4 +46,6 @@ export default function NavBar() {
             {createPortal(<LoginModal isOpen={modalOpen} setOpen={visibleHundler} />, document.body)}
         </div>
     );
-}
+});
+
+export default NavBar;

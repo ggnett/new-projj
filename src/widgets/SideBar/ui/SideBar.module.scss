@@ -15,13 +15,6 @@
     gap: 15px;
 }
 
-.link {
-    overflow: hidden;
-    width: 50%;
-    height: 32px;
-    transition: all linear 0.2s;
-}
-
 .collapsed {
     width: var(--sidebar-collapsed);
     flex-direction: column;

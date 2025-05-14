@@ -1,18 +1,19 @@
 /* eslint-disable dot-notation */
 /* eslint-disable i18next/no-literal-string */
-import { useState } from 'react';
+import { memo, useMemo, useState } from 'react';
 import cn from 'classnames';
 import { ThemeSwitcher } from 'widgets/ThemeSwitcher';
 import LangSwitcher from 'widgets/LangSwitcher/ui/LangSwitcher';
 import AppLink, { themes } from 'shared/ui/AppLink/AppLink';
 import { useTranslation } from 'react-i18next';
-
-import Main from '../../../../public/icons/mainIcon32x32.svg';
-import About from '../../../../public/icons/listIcon32x32.svg';
+import { SideBarItemsList } from '../model/items';
+import SideBarItem from './SideBarItem/SideBarItem';
 
 import styles from './SideBar.module.scss';
 
-export default function SideBar() {
+// 23 38
+
+const SideBar = memo(() => {
     const [collapsed, setCollapsed] = useState(false);
     const { t } = useTranslation();
 
@@ -20,18 +21,11 @@ export default function SideBar() {
         setCollapsed((prev) => !prev);
     };
 
+    const itemsList = useMemo(() => SideBarItemsList.map((item) => <SideBarItem key={item.path} item={item} collapsed={collapsed} />), [collapsed]);
+
     return (
         <div data-testid="sidebar" className={cn(styles.sidebar, { [styles.collapsed]: collapsed })}>
-            <div className={styles.links}>
-                <AppLink to="/" theme={themes.PRIMARY}>
-                    <Main />
-                    <span className={cn(styles.link)}>{t('Главная')}</span>
-                </AppLink>
-                <AppLink to="/about" theme={themes.PRIMARY}>
-                    <About />
-                    <span className={cn(styles.link)}>{t('О сайте')}</span>
-                </AppLink>
-            </div>
+            <div className={styles.links}>{itemsList}</div>
             <button className={styles.tglButton} data-testid="toggleButton" type="button" onClick={toogle}>
                 {collapsed ? '>' : '<'}
             </button>
@@ -41,4 +35,6 @@ export default function SideBar() {
             </div>
         </div>
     );
-}
+});
+
+export default SideBar;

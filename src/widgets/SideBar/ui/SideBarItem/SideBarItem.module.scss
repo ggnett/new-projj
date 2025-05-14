@@ -1,0 +1,11 @@
+.link {
+    overflow: hidden;
+    width: 50%;
+    height: 32px;
+    transition: all linear 0.2s;
+}
+
+.collapsed {
+        width: 1px;
+        opacity: 0;
+}

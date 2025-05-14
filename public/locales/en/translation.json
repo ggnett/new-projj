@@ -9,5 +9,6 @@
     "войти": "login",
     "форма авторизации": "Authorization form",
     "Не корректный логин или пароль": "Incorrect login or password",
-    "выйти": "logout"
+    "выйти": "logout",
+    "Профиль": "Profile"
 }

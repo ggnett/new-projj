@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import styles from './LangSwitcher.module.scss';
 
-export default function LangSwitcher() {
+const LangSwitcher = memo(() => {
     const { t, i18n } = useTranslation();
 
     const toggle = () => {
@@ -15,4 +15,6 @@ export default function LangSwitcher() {
             {t('язык')}
         </button>
     );
-}
+});
+
+export default LangSwitcher;
