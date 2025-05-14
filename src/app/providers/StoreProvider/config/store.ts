@@ -27,4 +27,6 @@ export default function createReduxStore(
     return store;
 }
 
-// 25 57
+// Типизация диспатча (для подсветки полей тайпскриптом)
+// https://redux-toolkit.js.org/usage/usage-with-typescript
+export type AppDispatch = ReturnType<typeof createReduxStore>['dispatch'];

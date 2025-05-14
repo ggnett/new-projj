@@ -12,12 +12,15 @@ import { Text } from 'shared/ui/Text';
 import { TextTheme } from 'shared/ui/Text/ui/Text';
 import { ReduxStoreWithManager } from 'app/providers/StoreProvider';
 import DynamicModuleLoader, { ReducerList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { getLoginIsLoading } from '../../model/selectors/getLoginIsLoading';
 import { getLoginError } from '../../model/selectors/getLoginError';
 import { getLoginPassword } from '../../model/selectors/getLoginPassword';
 import { getLoginUsername } from '../../model/selectors/getLoginUsername';
 import { loginByUsername } from '../../model/services/loginByUserName/loginByUserName';
 import styles from './LoginForm.module.scss';
+
+//4 10
 
 const initialReducers: ReducerList = {
     login: loginReducer,
@@ -28,7 +31,7 @@ const LoginFrom = memo((props: { isOpen: boolean; setOpen?: () => void }) => {
 
     const { t } = useTranslation();
 
-    const dispatch = useDispatch<any>();
+    const dispatch = useAppDispatch();
     const username = useSelector(getLoginUsername);
     const password = useSelector(getLoginPassword);
     const isLoading = useSelector(getLoginIsLoading);
