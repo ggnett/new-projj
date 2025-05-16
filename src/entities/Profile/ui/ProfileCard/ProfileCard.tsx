@@ -7,26 +7,45 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { Input } from 'shared/ui/Input';
 import { Text } from 'shared/ui/Text';
+import { Loader } from 'shared/ui/Loader';
+import cn from 'classnames';
+import { TextAlign, TextTheme } from 'shared/ui/Text/ui/Text';
 import styles from './ProfileCard.module.scss';
+import { Profile } from '../../model/types/profile';
 
-export default function ProfileCard() {
-    const data = useSelector(getProfileData);
-    const error = useSelector(getProfileError);
-    const isLoading = useSelector(getProfileIsLoading);
+interface props {
+    data?: Profile;
+    error?: string;
+    isLoading: boolean;
+}
+
+export default function ProfileCard({ data, error, isLoading }: props) {
     const { t } = useTranslation();
+
+    if (isLoading) {
+        return (
+            <div className={cn(styles.profileCard, styles.loading)}>
+                <Loader />
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className={cn(styles.profileCard, styles.error)}>
+                <Text theme={TextTheme.ERROR} title={t('something error')} text={t('try to refresh')} align={TextAlign.CENTER} />
+            </div>
+        );
+    }
 
     return (
         <div className={styles.profileCard}>
-            <div className={styles.header}>
-                <Text title={t('Профиль')} />
-                <button className={styles.btn} type="button">
-                    {t('редактировать')}
-                </button>
-            </div>
             <div className={styles.data}>
-                <Input className={styles.input} value={data?.first} placeholder={t('Ваше имя')} />
-                <Input className={styles.input} value={data?.lastname} placeholder={t('Ваша фамилия')} />
+                <Input value={data?.first} placeholder={t('Ваше имя')} />
+                <Input value={data?.lastname} placeholder={t('Ваша фамилия')} />
             </div>
         </div>
     );
 }
+
+// 11 07
