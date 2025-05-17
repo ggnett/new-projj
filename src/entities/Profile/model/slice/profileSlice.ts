@@ -14,7 +14,12 @@ export const profileSlice = createSlice({
     name: 'profile',
     initialState,
     reducers: {
-
+        setReadonly: (state, action:PayloadAction<boolean>) => {
+            state.readonly = action.payload;
+        },
+        setDataUndef: (state) => {
+            state.data = undefined;
+        },
     },
     extraReducers: (builder) => {
         builder

@@ -4,7 +4,6 @@ import { getProfileError } from 'entities/Profile/model/selectors/getProfileErro
 import { getProfileIsLoading } from 'entities/Profile/model/selectors/getProfileIsLoading/getProfileIsLoading';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
 import { Input } from 'shared/ui/Input';
 import { Text } from 'shared/ui/Text';
 import { Loader } from 'shared/ui/Loader';
@@ -41,11 +40,9 @@ export default function ProfileCard({ data, error, isLoading }: props) {
     return (
         <div className={styles.profileCard}>
             <div className={styles.data}>
-                <Input value={data?.first} placeholder={t('Ваше имя')} />
-                <Input value={data?.lastname} placeholder={t('Ваша фамилия')} />
+                <Input value={data?.first} placeholder={t('Ваше имя')} readonly />
+                <Input value={data?.lastname} placeholder={t('Ваша фамилия')} readonly />
             </div>
         </div>
     );
 }
-
-// 11 07

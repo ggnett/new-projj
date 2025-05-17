@@ -1,5 +1,5 @@
 /* eslint-disable object-curly-newline */
-import { fetchProfileData, getProfileError, getProfileIsLoading, ProfileCard, profileReducer } from 'entities/Profile';
+import { fetchProfileData, getProfileError, getProfileIsLoading, profileActions, ProfileCard, profileReducer } from 'entities/Profile';
 import { getProfileData } from 'entities/Profile/model/selectors/getProfileData/getProfileData';
 import { getUserAuthData } from 'entities/User';
 import React, { useEffect } from 'react';
@@ -36,3 +36,5 @@ export default function ProfilePage() {
         </DynamicModuleLoader>
     );
 }
+
+// 17 00
