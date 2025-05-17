@@ -8,5 +8,13 @@
     background: none;
     cursor: pointer;
     color: var(--primary-color);
-    padding: 5px;
+    padding: 10px;
+}
+
+.btnCancel {
+    margin-left: 5px;
+    background: none;
+    cursor: pointer;
+    color: red;
+    padding: 10px;
 }

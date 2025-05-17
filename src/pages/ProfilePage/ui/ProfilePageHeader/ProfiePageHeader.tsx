@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Text } from 'shared/ui/Text';
-import { getProfileReadonly, profileActions } from 'entities/Profile';
+import { getProfileReadonly, profileActions, updateProfileData } from 'entities/Profile';
 import { useSelector } from 'react-redux';
 
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
@@ -18,7 +18,12 @@ export default function ProfiePageHeader() {
     }, [dispatch]);
 
     const onCancelEdit = useCallback(() => {
-        dispatch(profileActions.setReadonly(true));
+        dispatch(profileActions.cancelEdit());
+    }, [dispatch]);
+
+    const onSave = useCallback(() => {
+        dispatch(updateProfileData());
+        dispatch(profileActions.cancelEdit());
     }, [dispatch]);
 
     return (
@@ -26,12 +31,17 @@ export default function ProfiePageHeader() {
             <Text title={t('Профиль')} />
             {readonly ? (
                 <button onClick={onEdit} className={styles.btn} type="button">
-                    {t('редактировать')}
+                    {t('Редактировать')}
                 </button>
             ) : (
-                <button onClick={onCancelEdit} className={styles.btn} type="button">
-                    {t('отменить')}
-                </button>
+                <>
+                    <button onClick={onSave} className={styles.btn} type="button">
+                        {t('Сохранить')}
+                    </button>
+                    <button onClick={onCancelEdit} className={styles.btnCancel} type="button">
+                        {t('Отменить')}
+                    </button>
+                </>
             )}
         </div>
     );
