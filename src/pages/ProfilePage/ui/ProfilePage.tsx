@@ -105,7 +105,7 @@ export default function ProfilePage() {
         <DynamicModuleLoader reducers={reducers} removeAfterUnmout>
             <div>
                 <ProfilePageHeader />
-                {validateErrors.length && validateErrors.map((err:any) => <Text theme={TextTheme.ERROR} text={err} />)}
+                {validateErrors?.length && validateErrors.map((err:any) => <Text theme={TextTheme.ERROR} text={err} />)}
                 <ProfileCard
                     data={fromData}
                     isLoading={isLoading}
