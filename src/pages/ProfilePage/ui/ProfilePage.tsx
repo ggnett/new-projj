@@ -10,6 +10,7 @@ import {
     profileActions,
     ProfileCard,
     profileReducer,
+    ValidateProfileErrors,
 } from 'entities/Profile';
 import { getProfileData } from 'entities/Profile/model/selectors/getProfileData/getProfileData';
 import { getUserAuthData } from 'entities/User';
@@ -40,6 +41,14 @@ export default function ProfilePage() {
     const readonly = useSelector(getProfileReadonly);
     const fromData = useSelector(getProfileForm);
     const validateErrors = useSelector(getProfileValidateError);
+
+    const validateErrorTranslate = {
+        [ValidateProfileErrors.SERVER_ERROR]: t('Ошибка сервера'),
+        [ValidateProfileErrors.NO_DATA]: t('нет данных'),
+        [ValidateProfileErrors.INCORRECT_AGE]: t('Некорректный возраст'),
+        [ValidateProfileErrors.INCORRECT_COUNTRY]: t('Некорректный регион'),
+        [ValidateProfileErrors.INCORRECT_USER_DATA]: t('Некорректный возраст'),
+    };
 
     useEffect(() => {
         dispatch(fetchProfileData());
@@ -105,7 +114,7 @@ export default function ProfilePage() {
         <DynamicModuleLoader reducers={reducers} removeAfterUnmout>
             <div>
                 <ProfilePageHeader />
-                {validateErrors?.length && validateErrors.map((err:any) => <Text theme={TextTheme.ERROR} text={err} />)}
+                {validateErrors?.length && validateErrors.map((err) => <Text key={err} theme={TextTheme.ERROR} text={validateErrorTranslate[err]} />)}
                 <ProfileCard
                     data={fromData}
                     isLoading={isLoading}

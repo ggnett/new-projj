@@ -24,5 +24,10 @@
     "Страна": "Country",
     "Редактировать": "Edit",
     "Сохранить": "Save",
-    "Отменить": "Cancel"
+    "Отменить": "Cancel",
+    "Ошибка сервера": "Server error",
+    "Некорректные данные имени и фамилии": "Incorrect first and last name data",
+    "Некорректный возраст": "Incorrect age",
+    "Некорректный регион": "Invalid region",
+    "нет данных": "no data"
 }
