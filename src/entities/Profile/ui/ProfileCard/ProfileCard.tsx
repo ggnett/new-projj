@@ -60,7 +60,7 @@ export default function ProfileCard({
     if (error) {
         return (
             <div className={cn(styles.profileCard, styles.error)}>
-                <Text theme={TextTheme.ERROR} title={t('something error')} text={t('try to refresh')} align={TextAlign.CENTER} />
+                <Text theme={TextTheme.ERROR} title={t('Что-то пошло не так')} text={t('Попробуйте обновить')} align={TextAlign.CENTER} />
             </div>
         );
     }

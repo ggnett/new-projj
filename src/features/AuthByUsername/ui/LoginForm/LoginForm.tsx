@@ -67,8 +67,8 @@ const LoginFrom = memo((props: { isOpen: boolean; setOpen?: () => void }) => {
                         <Text text={t('Не корректный логин или пароль')} theme={TextTheme.ERROR} />
                     </div>
                 )}
-                <Input autofocus={isOpen} onChange={onChangeLogin} value={username} placeholder={t('Enter login')} />
-                <Input onChange={onChangePassword} value={password} placeholder={t('Enter password')} />
+                <Input autofocus={isOpen} onChange={onChangeLogin} value={username} placeholder={t('Введите логин')} />
+                <Input onChange={onChangePassword} value={password} placeholder={t('Введите пароль')} />
                 <button onClick={onLoginClick} className={cn(styles.loginBtn, { [styles.disabled]: isLoading })} type="button">
                     {t('войти')}
                 </button>

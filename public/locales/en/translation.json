@@ -10,5 +10,19 @@
     "форма авторизации": "Authorization form",
     "Не корректный логин или пароль": "Incorrect login or password",
     "выйти": "logout",
-    "Профиль": "Profile"
+    "Профиль": "Profile",
+    "Попробуйте обновить": "try to refresh",
+    "Введите логин": "Enter login",
+    "Введите пароль": "Enter password",
+    "Ваше имя": "Your firstname",
+    "Ваша фамилия": "Your lastname",
+    "Ваш возраст": "Your age",
+    "Ваш город": "Your city",
+    "Ваш ник": "Your nik",
+    "Аватар": "Avatar",
+    "Валюта": "Currency",
+    "Страна": "Country",
+    "Редактировать": "Edit",
+    "Сохранить": "Save",
+    "Отменить": "Cancel"
 }

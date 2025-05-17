@@ -6,6 +6,7 @@ import {
     getProfileForm,
     getProfileIsLoading,
     getProfileReadonly,
+    getProfileValidateError,
     profileActions,
     ProfileCard,
     profileReducer,
@@ -19,6 +20,8 @@ import DynamicModuleLoader, { ReducerList } from 'shared/lib/components/DynamicM
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Currency } from 'entities/Currency';
 import { Country } from 'entities/Country';
+import { Text } from 'shared/ui/Text';
+import { TextTheme } from 'shared/ui/Text/ui/Text';
 import ProfilePageHeader from './ProfilePageHeader/ProfiePageHeader';
 
 import styles from './ProfilePage.module.scss';
@@ -36,6 +39,7 @@ export default function ProfilePage() {
     const isLoading = useSelector(getProfileIsLoading);
     const readonly = useSelector(getProfileReadonly);
     const fromData = useSelector(getProfileForm);
+    const validateErrors = useSelector(getProfileValidateError);
 
     useEffect(() => {
         dispatch(fetchProfileData());
@@ -101,6 +105,7 @@ export default function ProfilePage() {
         <DynamicModuleLoader reducers={reducers} removeAfterUnmout>
             <div>
                 <ProfilePageHeader />
+                {validateErrors.length && validateErrors.map((err:any) => <Text theme={TextTheme.ERROR} text={err} />)}
                 <ProfileCard
                     data={fromData}
                     isLoading={isLoading}
@@ -119,5 +124,3 @@ export default function ProfilePage() {
         </DynamicModuleLoader>
     );
 }
-
-// 17 00
