@@ -1,36 +1,40 @@
 /* eslint-disable comma-dangle */
 /* eslint-disable implicit-arrow-linebreak */
-import React, { useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Loader } from 'shared/ui/Loader';
 import { useSelector } from 'react-redux';
 import { getUserAuthData } from 'entities/User';
-import { routeConfig } from '../routerConfig/routerConfig';
+import { AppRoutes, AppRoutesProps, routeConfig } from '../routerConfig/routerConfig';
 
 import styles from '../../../styles/index.scss';
+import { RequireAuth } from './RequireAuth';
 
 export default function AppRouter() {
-    const isAuth = useSelector(getUserAuthData);
+    // const isAuth = useSelector(getUserAuthData);
 
-    const routes = useMemo(
-        () =>
-            Object.values(routeConfig).filter((route) => {
-                if (route.authOnly && !isAuth) {
-                    return false;
-                }
-                return true;
-            }),
-        [isAuth]
+    // const routes = useMemo(
+    //     () =>
+    //         Object.values(routeConfig).filter((route) => {
+    //             if (route.authOnly && !isAuth) {
+    //                 return false;
+    //             }
+    //             return true;
+    //         }),
+    //     [isAuth]
+    // );
+
+    const renderWithWrapper = useCallback(
+        (item:any) => (
+            <Route key={item.path} element={item.authOnly ? <RequireAuth>{item.element}</RequireAuth> : item.element} path={item.path} />
+        ),
+        []
     );
 
     return (
         <div className={styles.pageWrapper}>
             <React.Suspense fallback={<Loader />}>
-                <Routes>
-                    {routes.map((item) => (
-                        <Route key={item.path} element={item.element} path={item.path} />
-                    ))}
-                </Routes>
+                <Routes>{Object.values(routeConfig).map(renderWithWrapper)}</Routes>
             </React.Suspense>
         </div>
     );

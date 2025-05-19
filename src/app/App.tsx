@@ -6,8 +6,8 @@ import { NavBar } from 'widgets/NavBar';
 import { SideBar } from 'widgets/SideBar';
 
 import { Suspense, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { userActions } from 'entities/User';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserInited, userActions } from 'entities/User';
 import styles from './styles/index.scss';
 import { useTheme } from './providers/theme/useTheme';
 
@@ -15,6 +15,7 @@ export default function App() {
     const { theme } = useTheme();
 
     const dispatch = useDispatch();
+    const inited = useSelector(getUserInited);
 
     useEffect(() => {
         dispatch(userActions.initAuthData());
@@ -27,7 +28,7 @@ export default function App() {
 
                 <div className={styles.content}>
                     <SideBar />
-                    <AppRouter />
+                    {inited && <AppRouter />}
                 </div>
             </Suspense>
         </div>
