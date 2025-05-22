@@ -1,5 +1,7 @@
 .articleDetails {
     min-height: 100%;
+    display:flex;
+    flex-direction: column;
 }
 
 .avatar {
@@ -12,4 +14,15 @@
 
 .skeleton {
     margin-top: 15px;
+}
+
+.desc {
+    display: flex;
+    align-items: center;
+    gap:5px;
+    fill:var(--primary-color)
+}
+
+.eye {
+    margin-left:-5px;
 }
