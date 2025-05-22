@@ -8,6 +8,7 @@ import { userReducer } from 'entities/User';
 import { $api } from 'shared/api/api';
 import { NavigateOptions, To } from 'react-router-dom';
 import { profileReducer } from 'entities/Profile';
+import { articleDetailsReducer } from 'entities/Article/model/slice/aticleDetailsSlice';
 import { StateSchema } from './StateSchema';
 import { createReducerManager } from './reducerManager';
 
@@ -21,6 +22,7 @@ export default function createReduxStore(
         counter: counterReducer,
         user: userReducer,
         profile: profileReducer,
+        articleDetails: articleDetailsReducer,
         // login: loginReducer,
     };
 
