@@ -4,6 +4,7 @@
     position: relative;
     background-color: rgb(208 208 208);
     margin-top: 15px;
+    overflow: auto;
 }
 
 .copyBtn {
@@ -13,4 +14,15 @@
     background: none;
     color: var(--primary-color);
     padding: 5px;
+
+    &:hover {
+        background-color: var(--inverted-primary-color);
+        cursor:pointer;
+    }
+
+    &:active {
+        background-color: greenyellow;
+    }
 }
+
+

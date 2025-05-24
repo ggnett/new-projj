@@ -35,14 +35,14 @@ export default function ArticleDetails({ id }: props) {
     const error = useSelector(getArticleDetailsError);
     const isLoading = useSelector(getArticleDetailsIsLoading);
 
-    const renderBlock = useCallback((block: ArticleBlock) => {
+    const renderBlock = useCallback((block: ArticleBlock, index:any) => {
         switch (block.type) {
             case ArticleBlockType.CODE:
-                return <ArticleCodeBlockComponent block={block} />;
+                return <ArticleCodeBlockComponent key={index} block={block} />;
             case ArticleBlockType.IMAGE:
-                return <ArticleImageBlockComponent />;
+                return <ArticleImageBlockComponent key={index} block={block} />;
             case ArticleBlockType.TEXT:
-                return <ArticleTextBlockComponent block={block} />;
+                return <ArticleTextBlockComponent key={index} block={block} />;
             default:
                 return null;
         }
@@ -79,7 +79,7 @@ export default function ArticleDetails({ id }: props) {
                     <CalendarIcon />
                     <Text text={String(article?.createdAt)} />
                 </div>
-                {article?.blocks.map((item) => renderBlock(item))}
+                {article?.blocks.map((item, index) => renderBlock(item, index))}
             </>
         );
     }
