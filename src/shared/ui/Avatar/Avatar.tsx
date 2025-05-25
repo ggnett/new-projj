@@ -6,8 +6,8 @@ import styles from './Avatar.module.scss';
 
 interface props {
     classNames?: string;
-    avatar: string;
-    alt: string;
+    avatar?: string;
+    alt?: string;
     size?: number;
 }
 
