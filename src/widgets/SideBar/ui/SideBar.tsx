@@ -6,20 +6,24 @@ import { ThemeSwitcher } from 'widgets/ThemeSwitcher';
 import LangSwitcher from 'widgets/LangSwitcher/ui/LangSwitcher';
 import AppLink, { themes } from 'shared/ui/AppLink/AppLink';
 import { useTranslation } from 'react-i18next';
+import { RoutePath } from 'app/providers/router/routerConfig/routerConfig';
+import { useSelector } from 'react-redux';
+import { StateSchema } from 'app/providers/StoreProvider';
 import { SideBarItemsList } from '../model/items';
 import SideBarItem from './SideBarItem/SideBarItem';
 
 import styles from './SideBar.module.scss';
 
-// 23 38
-
 const SideBar = memo(() => {
     const [collapsed, setCollapsed] = useState(false);
     const { t } = useTranslation();
+    const userID = useSelector((state: StateSchema) => state.user?.authData?.id);
 
     const toogle = () => {
         setCollapsed((prev) => !prev);
     };
+
+    SideBarItemsList[2].path = `${RoutePath.profile}/${userID}`;
 
     const itemsList = useMemo(() => SideBarItemsList.map((item) => <SideBarItem key={item.path} item={item} collapsed={collapsed} />), [collapsed]);
 

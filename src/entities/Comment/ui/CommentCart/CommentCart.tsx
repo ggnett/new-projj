@@ -6,6 +6,8 @@ import Avatar from 'shared/ui/Avatar/Avatar';
 import { Text } from 'shared/ui/Text';
 
 import { Loader } from 'shared/ui/Loader';
+import AppLink from 'shared/ui/AppLink/AppLink';
+import { RoutePath } from 'app/providers/router/routerConfig/routerConfig';
 import styles from './CommentCart.module.scss';
 
 interface props {
@@ -21,10 +23,10 @@ export default function CommentCart({ classNames, comment, isLoading }: props) {
 
     return (
         <div className={cn(classNames, styles.commentCart)}>
-            <div className={styles.header}>
+            <AppLink to={`${RoutePath.profile}/${comment.user.id}`} classNames={styles.header}>
                 {comment.user.avatar ? <Avatar size={30} avatar={comment.user.avatar} /> : null}
                 <Text classNames={styles.userName} title={comment.user.username} />
-            </div>
+            </AppLink>
             <Text classNames={styles.text} text={comment.text} />
         </div>
     );

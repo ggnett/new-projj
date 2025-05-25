@@ -1138,17 +1138,30 @@
       "modified_by": ""
     }
   ],
-  "profile": {
-    "id": "2",
-    "first": "ulbi tv",
-    "lastname": "asf",
-    "age": 465,
-    "currency": "EUR",
-    "country": "Russia",
-    "city": "Moscow",
-    "username": "ulbi tv",
-    "avatar": "https://xakep.ru/wp-content/uploads/2018/05/171485/KuroiSH-hacker.jpg"
-  },
+  "profile": [
+    {
+      "id": "1",
+      "first": "admin",
+      "lastname": "admin123",
+      "age": 465,
+      "currency": "RUB",
+      "country": "Belarus",
+      "city": "Moscow",
+      "username": "admin213",
+      "avatar": "https://yt3.ggpht.com/ytc/AKedOLTYUJxG8Hu036PQ_TXpMLq2fG8Kj8NZI4h0lbn_3g=s900-c-k-c0x00ffffff-no-rj"
+    },
+    {
+      "id": "2",
+      "first": "ulbi tv",
+      "lastname": "asf",
+      "age": 465,
+      "currency": "EUR",
+      "country": "Ukraine",
+      "city": "Moscow",
+      "username": "ulbi tv",
+      "avatar": "https://xakep.ru/wp-content/uploads/2018/05/171485/KuroiSH-hacker.jpg"
+    }
+  ],
   "article-ratings": [
     {
       "id": "1",

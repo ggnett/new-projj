@@ -23,6 +23,8 @@ import { Currency } from 'entities/Currency';
 import { Country } from 'entities/Country';
 import { Text } from 'shared/ui/Text';
 import { TextTheme } from 'shared/ui/Text/ui/Text';
+import { StateSchema } from 'app/providers/StoreProvider';
+import { useParams } from 'react-router-dom';
 import ProfilePageHeader from './ProfilePageHeader/ProfiePageHeader';
 
 import styles from './ProfilePage.module.scss';
@@ -50,9 +52,11 @@ export default function ProfilePage() {
         [ValidateProfileErrors.INCORRECT_USER_DATA]: t('Некорректный возраст'),
     };
 
+    const { id } = useParams<{ id: string }>();
+
     useEffect(() => {
-        dispatch(fetchProfileData());
-    }, [dispatch]);
+        dispatch(fetchProfileData(id));
+    }, [dispatch, id]);
 
     const onChangeFirstname = useCallback(
         (value?: string) => {

@@ -12,6 +12,7 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { fetchCommentsByArticleId } from 'pages/ArticlesDetailsPage/model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 import { useSelector } from 'react-redux';
 import { getArticleCommentsError, getArticleCommentsIsloading } from 'pages/ArticlesDetailsPage/model/selectors/comments';
+import { AddCommentFrom } from 'features/addCommentForm';
 import styles from './ArticlesDetailsPage.module.scss';
 
 const reducers: ReducerList = {
@@ -43,6 +44,7 @@ export default function ArticlesDetailsPage() {
             <div>
                 <ArticleDetails id={id} />
                 <Text classNames={styles.commentTitle} title={t('Коментарии')} />
+                <AddCommentFrom />
                 <CommentList isLoading={isLoading} comments={comments} />
             </div>
         </DynamicModuleLoader>

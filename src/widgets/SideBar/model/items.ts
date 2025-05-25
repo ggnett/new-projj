@@ -1,4 +1,6 @@
 import { RoutePath } from 'app/providers/router/routerConfig/routerConfig';
+import { useSelector } from 'react-redux';
+import { StateSchema } from 'app/providers/StoreProvider';
 import Main from '../../../../public/icons/mainIcon32x32.svg';
 import About from '../../../../public/icons/listIcon32x32.svg';
 

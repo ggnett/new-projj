@@ -1,3 +1,4 @@
+/* eslint-disable object-curly-newline */
 import React, { FC } from 'react';
 import { Link, LinkProps, NavLink } from 'react-router-dom';
 import cn from 'classnames';
@@ -9,18 +10,22 @@ export const enum themes {
 }
 
 interface props extends LinkProps {
+    classNames?: string;
     children?: React.ReactNode;
-    theme: themes;
+    theme?: themes;
 }
 
 const AppLink: FC<props> = (props) => {
-    const { children, to, theme } = props;
+    const { children, to, theme, classNames } = props;
 
     return (
         <NavLink
-            className={cn(styles.links, styles[theme])}
+            className={cn(styles.links, styles[theme], classNames)}
             to={to}
-            style={({ isActive }) => ({ color: isActive ? 'var(--inverted-secondary-color)' : '', fill: isActive ? 'var(--inverted-secondary-color)' : '' })}
+            style={({ isActive }) => ({
+                color: isActive ? 'var(--inverted-secondary-color)' : '',
+                fill: isActive ? 'var(--inverted-secondary-color)' : '',
+            })}
         >
             {children}
         </NavLink>
