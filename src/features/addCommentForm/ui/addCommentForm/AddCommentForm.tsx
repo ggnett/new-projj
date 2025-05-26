@@ -1,7 +1,7 @@
 /* eslint-disable comma-dangle */
 import { addCommentFormError, addCommentFromText } from 'features/addCommentForm/model/selectors/addCommentFormSelectors';
 import { addCommentFormActions, addCommentFormReducer } from 'features/addCommentForm/model/slices/addCommentFormSlice';
-import React, { useCallback } from 'react';
+import React, { useCallback, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import DynamicModuleLoader, { ReducerList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';

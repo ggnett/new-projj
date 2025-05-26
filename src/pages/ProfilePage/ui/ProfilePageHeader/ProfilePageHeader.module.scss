@@ -4,7 +4,6 @@
 }
 
 .btn {
-    margin-left: auto;
     background: none;
     cursor: pointer;
     color: var(--primary-color);
@@ -17,4 +16,8 @@
     cursor: pointer;
     color: red;
     padding: 10px;
+}
+
+.btnWrapper {
+    margin-left: auto;
 }
