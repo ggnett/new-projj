@@ -1,7 +1,7 @@
 /* eslint-disable i18next/no-literal-string */
 import { ArticleDetails } from 'entities/Article';
 import { CommentList } from 'entities/Comment';
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { Text } from 'shared/ui/Text';
@@ -13,6 +13,7 @@ import { fetchCommentsByArticleId } from 'pages/ArticlesDetailsPage/model/servic
 import { useSelector } from 'react-redux';
 import { getArticleCommentsError, getArticleCommentsIsloading } from 'pages/ArticlesDetailsPage/model/selectors/comments';
 import { AddCommentFrom } from 'features/addCommentForm';
+import { addCommentForArticle } from 'pages/ArticlesDetailsPage/model/services/addCommentForArticle/addCommentForArticle';
 import styles from './ArticlesDetailsPage.module.scss';
 
 const reducers: ReducerList = {
@@ -26,6 +27,10 @@ export default function ArticlesDetailsPage() {
     const comments = useSelector(getArticleComments.selectAll);
     const isLoading = useSelector(getArticleCommentsIsloading);
     const error = useSelector(getArticleCommentsError);
+
+    const onSendComment = (text:string) => {
+        dispatch(addCommentForArticle(text));
+    };
 
     useEffect(() => {
         dispatch(fetchCommentsByArticleId(id));
@@ -44,9 +49,11 @@ export default function ArticlesDetailsPage() {
             <div>
                 <ArticleDetails id={id} />
                 <Text classNames={styles.commentTitle} title={t('Коментарии')} />
-                <AddCommentFrom />
+                <AddCommentFrom onSendComment={onSendComment} />
                 <CommentList isLoading={isLoading} comments={comments} />
             </div>
         </DynamicModuleLoader>
     );
 }
+
+// 29 50
