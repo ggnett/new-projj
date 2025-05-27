@@ -1,11 +1,22 @@
 .small {
     width: 230px;
-    background-color: red;
+    transition: 0.2s;
+    cursor:pointer;
 
-    .card {
-        padding: 15px;
-        border-radius: 12px;
-        background: rgb(209 209 209);
+    .date {
+        display: none;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    &:hover {
+        opacity: 0.8;
+        transform: scale(1.01);
+
+        .date {
+            display: block;
+        }
     }
 
     .imageWrapper {
@@ -19,19 +30,17 @@
         height: 200px;
     }
 
-    .date {
-        position: absolute;
-        right: 0;
-        top: 0;
-    }
-
     .infoWrapper {
         display: flex;
         align-items: center;
+        margin-top: 8px;
     }
 
     .types {
-        margin-top: 8px;
+        width: 120px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .views {
@@ -40,7 +49,11 @@
     }
 
     .title {
+        width: 180px;
         margin-top: 8px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 }
 

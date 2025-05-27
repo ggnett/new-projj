@@ -19,6 +19,6 @@ export enum ArticleType {
 }
 
 export enum ArticleView {
-    BIG = 'BIG',
-    SMALL = 'SMALL',
+    BIG = 'big',
+    SMALL = 'small',
 }
