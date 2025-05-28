@@ -10,7 +10,7 @@ interface props {
 }
 
 export default function ArticleList({ articles, isLoading, view = ArticleView.SMALL }: props) {
-    const renderArticle = (article: Article) => <ArticleListItem article={article} view={view} />;
+    const renderArticle = (article: Article) => <ArticleListItem key={article.id} article={article} view={ArticleView.BIG} />;
 
     return <div>{articles.length > 0 ? articles.map(renderArticle) : null}</div>;
 }
