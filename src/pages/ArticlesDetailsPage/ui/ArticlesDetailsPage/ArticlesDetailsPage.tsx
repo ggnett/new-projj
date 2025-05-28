@@ -3,7 +3,7 @@ import { ArticleDetails } from 'entities/Article';
 import { CommentList } from 'entities/Comment';
 import React, { useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Text } from 'shared/ui/Text';
 
 import DynamicModuleLoader, { ReducerList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
@@ -14,6 +14,7 @@ import { useSelector } from 'react-redux';
 import { getArticleCommentsError, getArticleCommentsIsloading } from 'pages/ArticlesDetailsPage/model/selectors/comments';
 import { AddCommentFrom } from 'features/addCommentForm';
 import { addCommentForArticle } from 'pages/ArticlesDetailsPage/model/services/addCommentForArticle/addCommentForArticle';
+import { RoutePath } from 'app/providers/router/routerConfig/routerConfig';
 import styles from './ArticlesDetailsPage.module.scss';
 
 const reducers: ReducerList = {
@@ -22,15 +23,20 @@ const reducers: ReducerList = {
 
 export default function ArticlesDetailsPage() {
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
     const { id } = useParams<{ id: string }>();
     const { t } = useTranslation();
     const comments = useSelector(getArticleComments.selectAll);
     const isLoading = useSelector(getArticleCommentsIsloading);
     const error = useSelector(getArticleCommentsError);
 
-    const onSendComment = (text:string) => {
+    const onSendComment = (text: string) => {
         dispatch(addCommentForArticle(text));
     };
+
+    const onBackToList = useCallback(() => {
+        navigate(RoutePath.articles);
+    }, [navigate]);
 
     useEffect(() => {
         dispatch(fetchCommentsByArticleId(id));
@@ -46,6 +52,9 @@ export default function ArticlesDetailsPage() {
 
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmout>
+            <button onClick={onBackToList} className={styles.btn} type="button">
+                {t('назад к списку')}
+            </button>
             <div>
                 <ArticleDetails id={id} />
                 <Text classNames={styles.commentTitle} title={t('Коментарии')} />
@@ -55,5 +64,3 @@ export default function ArticlesDetailsPage() {
         </DynamicModuleLoader>
     );
 }
-
-// 29 50

@@ -2,6 +2,10 @@
 import { Article, ArticleList } from 'entities/Article';
 import React from 'react';
 
+import { useTranslation } from 'react-i18next';
+import { ArticleView } from 'entities/Article/model/consts/consts';
+import styles from './ArticlesPage.module.scss';
+
 const articleMOK = {
     id: '1',
     title: 'Javascript news СВЕЖАЯ',
@@ -74,9 +78,11 @@ const articleMOK = {
 } as unknown as Article;
 
 export default function ArticlesPage() {
+    const { t } = useTranslation();
+
     return (
         <div>
-            <ArticleList articles={[articleMOK]} />
+            <ArticleList articles={[articleMOK]} view={ArticleView.BIG} isLoading />
         </div>
     );
 }

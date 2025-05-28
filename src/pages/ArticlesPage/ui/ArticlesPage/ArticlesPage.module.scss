@@ -1,7 +1,3 @@
-.commentTitle {
-    margin-top: 20px;;
-}
-
 .btn {
     background: none;
     padding: 5px;
@@ -12,7 +8,6 @@
 
     &:hover {
         opacity: 0.8;
-        background-color: var(--inverted-bg-color);
-        color: var(--inverted-primary-color);
+        background-color: var(--bg-color);
     }
 }

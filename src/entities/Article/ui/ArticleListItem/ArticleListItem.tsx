@@ -58,7 +58,7 @@ export default function ArticleListItem({ article, view }: props) {
 
     return (
         <div {...bindHover} className={styles[view]}>
-            <Card>
+            <Card onClick={onOpenArticle}>
                 <div className={styles.imageWrapper}>
                     <img src={article.img} alt={article.title} className={styles.img} />
                     <Text text={article.createdAt} classNames={styles.date} />
@@ -73,5 +73,3 @@ export default function ArticleListItem({ article, view }: props) {
         </div>
     );
 }
-
-// 39 27
