@@ -38,6 +38,6 @@ export interface Article {
 }
 
 export enum ArticleView {
-    BIG = 'BIG',
-    SMALL = 'SMALL'
+    BIG = 'big',
+    SMALL = 'small'
 }

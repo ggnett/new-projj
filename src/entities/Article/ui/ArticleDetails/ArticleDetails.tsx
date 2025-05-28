@@ -79,7 +79,7 @@ export default function ArticleDetails({ id }: props) {
                     <CalendarIcon />
                     <Text text={String(article?.createdAt)} />
                 </div>
-                {article?.blocks.map((item, index) => renderBlock(item, index))}
+                {article?.blocks.map((item:any, index:any) => renderBlock(item, index))}
             </>
         );
     }
