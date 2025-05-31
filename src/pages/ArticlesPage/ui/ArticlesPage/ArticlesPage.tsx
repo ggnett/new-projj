@@ -1,6 +1,6 @@
 /* eslint-disable i18next/no-literal-string */
 import { Article, ArticleList, ArticleViewSelector } from 'entities/Article';
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 
 import { useTranslation } from 'react-i18next';
 import { ArticleView } from 'entities/Article/model/consts/consts';
@@ -9,7 +9,14 @@ import { articlesPageActions, articlesPageReducer, getArticles } from 'pages/Art
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { fetchArticlesList } from 'pages/ArticlesPage/model/services/fetchArticle/fetchArticlesList';
 import { useSelector } from 'react-redux';
-import { getArticlesPageIsLoading, getArticlesPageView } from 'pages/ArticlesPage/model/selectors/articlesPageSelectors';
+import {
+    getArticlesPageHasMore,
+    getArticlesPageIsLoading,
+    getArticlesPageNum,
+    getArticlesPageView,
+} from 'pages/ArticlesPage/model/selectors/articlesPageSelectors';
+import { Page } from 'shared/ui/Page';
+import { fetchNextArticlesPage } from 'pages/ArticlesPage/model/services/fetchNextArticlesPage/fetchNextArticlesPage';
 import styles from './ArticlesPage.module.scss';
 
 const reducersList = {
@@ -22,21 +29,27 @@ export default function ArticlesPage() {
     const articlesList = useSelector(getArticles.selectAll);
     const isLoading = useSelector(getArticlesPageIsLoading);
     const view = useSelector(getArticlesPageView);
+    const page = useSelector(getArticlesPageNum);
+    const hasMore = useSelector(getArticlesPageHasMore);
 
     const onChangeView = (view: ArticleView) => {
         dispatch(articlesPageActions.setView(view));
     };
 
+    const onLoadNextPart = useCallback(() => {
+        dispatch(fetchNextArticlesPage());
+    }, [dispatch]);
+
     useEffect(() => {
-        dispatch(fetchArticlesList({ replace: false }));
         dispatch(articlesPageActions.initState());
+        dispatch(fetchArticlesList({ page: 1 }));
     }, [dispatch]);
     return (
         <DynamicModuleLoader reducers={reducersList} removeAfterUnmout>
-            <div>
+            <Page onScrollEnd={onLoadNextPart}>
                 <ArticleViewSelector view={view} onViewClick={onChangeView} />
                 <ArticleList articles={articlesList} view={view} isLoading={isLoading} />
-            </div>
+            </Page>
         </DynamicModuleLoader>
     );
 }

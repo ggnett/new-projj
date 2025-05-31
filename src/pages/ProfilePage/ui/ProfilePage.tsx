@@ -25,6 +25,7 @@ import { Text } from 'shared/ui/Text';
 import { TextTheme } from 'shared/ui/Text/ui/Text';
 import { StateSchema } from 'app/providers/StoreProvider';
 import { useParams } from 'react-router-dom';
+import { Page } from 'shared/ui/Page';
 import ProfilePageHeader from './ProfilePageHeader/ProfiePageHeader';
 
 import styles from './ProfilePage.module.scss';
@@ -116,7 +117,7 @@ export default function ProfilePage() {
 
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmout>
-            <div>
+            <Page>
                 <ProfilePageHeader />
                 {validateErrors?.length && validateErrors.map((err) => <Text key={err} theme={TextTheme.ERROR} text={validateErrorTranslate[err]} />)}
                 <ProfileCard
@@ -133,7 +134,7 @@ export default function ProfilePage() {
                     onChangeCountry={onChangeCountry}
                     readonly={readonly}
                 />
-            </div>
+            </Page>
         </DynamicModuleLoader>
     );
 }

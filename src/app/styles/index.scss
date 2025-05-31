@@ -20,13 +20,3 @@ body {
 .content {
     display: flex;
 }
-
-/* stylelint-disable-next-line selector-class-pattern */
-.pageWrapper {
-    flex-grow: 1;
-    padding: 20px;
-    height: calc(100vh - 50px);
-    overflow-y: auto;
-    padding-left:45px;
-    width:90%;
-}

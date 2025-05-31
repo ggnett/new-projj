@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import { ArticleView } from 'entities/Article/model/consts/consts';
 import React from 'react';
 import cn from 'classnames';
@@ -29,8 +30,8 @@ export default function ArticleViewSelector({ view, onViewClick }: props) {
 
     return (
         <div className={styles.root}>
-            {viewTypes.map((item) => (
-                <button className={cn(styles.btn, { [styles.selected]: item.view === view })} onClick={onClick(item.view)} type="button">
+            {viewTypes.map((item, index) => (
+                <button key={index} className={cn(styles.btn, { [styles.selected]: item.view === view })} onClick={onClick(item.view)} type="button">
                     {item.icon}
                 </button>
             ))}

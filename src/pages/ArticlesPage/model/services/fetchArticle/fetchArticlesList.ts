@@ -15,6 +15,7 @@ import {
 interface FetchArticlesListProps {
     // Индикатор: заменить пришедшие данные или добавить
     replace?: boolean;
+    page?: number;
 }
 
 export const fetchArticlesList = createAsyncThunk<

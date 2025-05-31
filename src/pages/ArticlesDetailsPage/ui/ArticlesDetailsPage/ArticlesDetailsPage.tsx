@@ -15,6 +15,7 @@ import { getArticleCommentsError, getArticleCommentsIsloading } from 'pages/Arti
 import { AddCommentFrom } from 'features/addCommentForm';
 import { addCommentForArticle } from 'pages/ArticlesDetailsPage/model/services/addCommentForArticle/addCommentForArticle';
 import { RoutePath } from 'app/providers/router/routerConfig/routerConfig';
+import { Page } from 'shared/ui/Page';
 import styles from './ArticlesDetailsPage.module.scss';
 
 const reducers: ReducerList = {
@@ -43,7 +44,7 @@ export default function ArticlesDetailsPage() {
     }, [dispatch, id]);
 
     if (!id) {
-        return <div>{t('statia ne naidena')}</div>;
+        return <Page>{t('statia ne naidena')}</Page>;
     }
 
     if (error) {
@@ -52,15 +53,17 @@ export default function ArticlesDetailsPage() {
 
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmout>
-            <button onClick={onBackToList} className={styles.btn} type="button">
-                {t('назад к списку')}
-            </button>
-            <div>
-                <ArticleDetails id={id} />
-                <Text classNames={styles.commentTitle} title={t('Коментарии')} />
-                <AddCommentFrom onSendComment={onSendComment} />
-                <CommentList isLoading={isLoading} comments={comments} />
-            </div>
+            <Page>
+                <button onClick={onBackToList} className={styles.btn} type="button">
+                    {t('назад к списку')}
+                </button>
+                <div>
+                    <ArticleDetails id={id} />
+                    <Text classNames={styles.commentTitle} title={t('Коментарии')} />
+                    <AddCommentFrom onSendComment={onSendComment} />
+                    <CommentList isLoading={isLoading} comments={comments} />
+                </div>
+            </Page>
         </DynamicModuleLoader>
     );
 }

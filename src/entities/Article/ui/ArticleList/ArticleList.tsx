@@ -26,5 +26,16 @@ export default function ArticleList({ articles, isLoading, view = ArticleView.SM
         );
     }
 
-    return <div className={styles.root}>{articles.length > 0 ? articles.map(renderArticle) : null}</div>;
+    return (
+        <div className={styles.root}>
+            {articles.length > 0 ? articles.map(renderArticle) : null}
+            {isLoading && (
+                <div className={styles.root}>
+                    {new Array(view === ArticleView.SMALL ? 9 : 6).fill(0).map((item, index) => (
+                        <ArticleListItemSkeleton key={index} view={view} />
+                    ))}
+                </div>
+            )}
+        </div>
+    );
 }

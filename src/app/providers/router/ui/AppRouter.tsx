@@ -25,17 +25,13 @@ export default function AppRouter() {
     // );
 
     const renderWithWrapper = useCallback(
-        (item:any) => (
-            <Route key={item.path} element={item.authOnly ? <RequireAuth>{item.element}</RequireAuth> : item.element} path={item.path} />
-        ),
+        (item: any) => <Route key={item.path} element={item.authOnly ? <RequireAuth>{item.element}</RequireAuth> : item.element} path={item.path} />,
         []
     );
 
     return (
-        <div className={styles.pageWrapper}>
-            <React.Suspense fallback={<Loader />}>
-                <Routes>{Object.values(routeConfig).map(renderWithWrapper)}</Routes>
-            </React.Suspense>
-        </div>
+        <React.Suspense fallback={<Loader />}>
+            <Routes>{Object.values(routeConfig).map(renderWithWrapper)}</Routes>
+        </React.Suspense>
     );
 }
