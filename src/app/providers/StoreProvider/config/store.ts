@@ -9,19 +9,22 @@ import { $api } from 'shared/api/api';
 import { NavigateOptions, To } from 'react-router-dom';
 import { profileReducer } from 'entities/Profile';
 import { articleDetailsReducer } from 'entities/Article/model/slice/aticleDetailsSlice';
+import { articlesPageReducer } from 'pages/ArticlesPage/model/slices/articlePageSlice';
+import { uiReducer } from 'features/UI';
 import { StateSchema } from './StateSchema';
 import { createReducerManager } from './reducerManager';
 
 export default function createReduxStore(
     initialState?:StateSchema,
     asyncReducers?:ReducersMapObject<StateSchema>,
-    navigate?: (to: To, options?: NavigateOptions) => void,
 ) {
     const rootRedusers: ReducersMapObject<StateSchema> = {
         ...asyncReducers,
         counter: counterReducer,
         user: userReducer,
         profile: profileReducer,
+        UI: uiReducer,
+        // articlesPage: articlesPageReducer,
         // articleDetails: articleDetailsReducer,
         // login: loginReducer,
     };
@@ -35,7 +38,6 @@ export default function createReduxStore(
             thunk: {
                 extraArgument: {
                     api: $api,
-                    navigate,
                 },
             },
         }),
