@@ -11,6 +11,7 @@ import { fetchArticlesList } from 'pages/ArticlesPage/model/services/fetchArticl
 import { useSelector } from 'react-redux';
 import {
     getArticlesPageHasMore,
+    getArticlesPageInited,
     getArticlesPageIsLoading,
     getArticlesPageNum,
     getArticlesPageView,
@@ -31,6 +32,7 @@ export default function ArticlesPage() {
     const view = useSelector(getArticlesPageView);
     const page = useSelector(getArticlesPageNum);
     const hasMore = useSelector(getArticlesPageHasMore);
+    const inited = useSelector(getArticlesPageInited);
 
     const onChangeView = (view: ArticleView) => {
         dispatch(articlesPageActions.setView(view));
@@ -41,11 +43,13 @@ export default function ArticlesPage() {
     }, [dispatch]);
 
     useEffect(() => {
-        dispatch(articlesPageActions.initState());
-        dispatch(fetchArticlesList({ page: 1 }));
-    }, [dispatch]);
+        if (!inited) {
+            dispatch(articlesPageActions.initState());
+            dispatch(fetchArticlesList({ page: 1 }));
+        }
+    }, [dispatch, inited]);
     return (
-        <DynamicModuleLoader reducers={reducersList} removeAfterUnmout>
+        <DynamicModuleLoader reducers={reducersList} removeAfterUnmout={false}>
             <Page onScrollEnd={onLoadNextPart}>
                 <ArticleViewSelector view={view} onViewClick={onChangeView} />
                 <ArticleList articles={articlesList} view={view} isLoading={isLoading} />

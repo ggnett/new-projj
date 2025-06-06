@@ -22,7 +22,7 @@ export default function createReduxStore(
         counter: counterReducer,
         user: userReducer,
         profile: profileReducer,
-        articleDetails: articleDetailsReducer,
+        // articleDetails: articleDetailsReducer,
         // login: loginReducer,
     };
 
